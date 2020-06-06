@@ -1,0 +1,76 @@
+{% extends 'siteBase.html.twig' %}
+
+{% block title %}Controles{% endblock %}
+
+{% block styleToAdd %}
+    <link href="{{ asset('DashAsset/vendors4/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('DashAsset/vendors4/datatables.net-responsive-dt/css/responsive.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block mainContent %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="hk-sec-wrapper">
+            <h1 class="text-center h3 mb-4">Creation de {{ entity }}</h1>
+            
+            </div>
+        </div>
+
+    <div class="col-xl-12">
+        <section class="hk-sec-wrapper">
+            <div class="h4 hk-sec-title">{{ entity }}s</div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="table-wrap">
+                        <table id="datable_1" class="table table-hover w-100 display pb-30">
+                            <thead>
+                                <tr>
+                                    <th>N° du controle</th>
+                                    <th>Module</th>
+                                    <th>Date de creation</th>
+                                    <th>Date de modification</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>N° du controle</th>
+                                <th>Module</th>
+                                <th>Date de creation</th>
+                                <th>Date de modification</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </section>
+    </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scriptToAdd %}
+    <!-- Data Table JavaScript -->
+    <script src="{{ asset('DashAsset/vendors4/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/jszip/dist/jszip.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/pdfmake/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/pdfmake/build/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/dist/js/dataTables-data.js') }}"></script>
+{% endblock %}

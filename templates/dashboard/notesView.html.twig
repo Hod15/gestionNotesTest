@@ -1,0 +1,46 @@
+{% extends 'siteBase.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block mainContent %}
+    <!-- Title -->
+        <div class="hk-pg-header align-items-top">
+            <div>
+                <h2 class="hk-pg-title font-weight-600 mb-10">Consulation des notes</h2>
+            </div>
+        </div>
+    <!-- /Title -->
+    
+<!-- Row -->
+<div class="row">
+    {% if not notes %}
+        <div class="col-xl-12">
+            <div class="hk-sec-wrapper">
+                <h1 class="text-dark display-3">Vous n'avez aucun contrôle dans cet module pour l'instant</h1>
+            </div>
+        </div>
+
+    {% else %}
+        
+    {% endif %}
+
+</div>
+<!-- /Row -->
+{% endblock %}
+
+{% block scriptToAdd %}
+    <!-- Morris Charts JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/raphael/raphael.min.js') }} "></script>
+    <script src=" {{ asset('DashAsset/vendors4/morris.js/morris.min.js') }} "></script>
+    
+    <!-- EChartJS JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/echarts/dist/echarts-en.min.js') }} "></script>
+    
+    <!-- Sparkline JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/jquery.sparkline/dist/jquery.sparkline.min.js') }} "></script>
+
+
+    <!-- Owl JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/owl.carousel/dist/owl.carousel.min.js') }} "></script>
+    <script src=" {{ asset('DashAsset/dist/js/piecharts-data.js') }} "></script>
+{% endblock %}

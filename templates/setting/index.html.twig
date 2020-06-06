@@ -1,0 +1,25 @@
+{% extends 'Sitebase.html.twig' %}
+
+{% block title %}Setting{% endblock %}
+
+{% block mainContent %}
+    <!-- Title -->
+        <div class="hk-pg-header align-items-top">
+            <div>
+                <h2 class="hk-pg-title font-weight-600 mb-10">Setting </h2>
+            </div>
+        </div>
+    <!-- /Title -->
+    <div class="row">
+        <div class="hk-sec-wrapper">
+            <div class="col-xl-12">
+                <img src="{{ asset('DashAsset/dist/img/avatar12.jpg')}}" alt="user" class=" rounded-circle">
+
+                {{ form_start(form) }}
+                    {{ form_row(form.name) }}
+                {{ form_end(form) }}
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

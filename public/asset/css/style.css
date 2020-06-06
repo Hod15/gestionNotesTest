@@ -1,0 +1,90 @@
+body
+{
+    background-color: #2B3238;
+    font-family: "Century gothic";
+    color: #7D7D7D;
+}
+
+input
+{
+    color: white;
+}
+
+.form-control
+{
+    border: 0;
+    background-color: #3A4149;
+    color: #7D7D7D;
+}
+
+.form-control:hover
+{
+    background-color: #3A4149;
+    color: #7D7D7D;
+}
+
+.form-control:focus
+{
+    background-color: #3A4149;
+}
+
+
+
+.form-control::-webkit-input-placeholder 
+{
+    color: #7D7D7D;
+    opacity: 1;
+}
+  
+.form-control::-moz-placeholder 
+{
+    color: #7D7D7D;
+    opacity: 1;
+}
+  
+.form-control:-ms-input-placeholder 
+{
+    color: #7D7D7D;
+    opacity: 1;
+}
+  
+.form-control::-ms-input-placeholder 
+{
+    color: #7D7D7D;
+    opacity: 1;
+}
+  
+.form-control::placeholder 
+{
+    color: #7D7D7D;
+    opacity: 1;
+}
+
+.input-group-text
+{
+    background-color: #363B41;
+    border: 0;
+    color: #7D7D7D;
+}
+
+.container
+{
+    margin-top: 15rem;
+}
+
+.normal
+{
+    color: white;
+    text-decoration: none;
+}
+
+.normal:hover
+{
+    color: white;
+    text-decoration: underline;
+}
+
+.fleche
+{
+    color: #7D7D7D;
+}

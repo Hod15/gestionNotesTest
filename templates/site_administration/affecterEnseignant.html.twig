@@ -1,0 +1,29 @@
+{% extends 'siteBase.html.twig' %}
+
+{% block title %}Affectation d'{{entity}}{% endblock %}
+
+{% block mainContent %}
+    <div class="row">
+        <div class="offset-xl-3 col-xl-6">
+            <div class="hk-sec-wrapper">
+                <h1>{{ entity }}: {{ enseignant.lastName }} <span class="text-uppercase">{{ enseignant.name }}</span></h1>
+
+                <div class="form">
+                    {{ form_start(form) }}
+                        <div class="col-xl-12 form-group">
+                            <div class="row">
+                                {% for choice in form %}
+                                    <div class="col-xl-12">  
+                                        {{ form_row(choice) }} 
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <input type="submit" value="Valider" class="btn btn-block btn-primary">
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'siteBase.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block mainContent %}
+    <!-- Title -->
+        <div class="hk-pg-header align-items-top">
+            <div>
+                <h2 class="hk-pg-title font-weight-600 mb-10">Consulation des notes</h2>
+            </div>
+        </div>
+    <!-- /Title -->
+    
+<!-- Row -->
+<div class="row">
+    {% if "ROLE_ETUDIANT" in app.user.roles %}
+
+        {% for unite in data %}
+            <div class="col-xl-12 mb-15 mt-15">
+                <div class="hk-sec-wrapper">
+                    <h2 class="hk-sec-title text-center">{{unite.uniteEnseignement.title}}</h2>
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between">
+                        {% for module in unite.modules %}
+                            <a class="btn btn-outline-danger" href="{{ path('module_notes', {'id' : module.id}) }}" >{{module.title}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
+    {% elseif "ROLE_ENSEIGNANT" in app.user.roles %}
+        
+    {% endif %}
+    
+</div>
+<!-- /Row -->
+{% endblock %}
+
+{% block scriptToAdd %}
+    <!-- Morris Charts JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/raphael/raphael.min.js') }} "></script>
+    <script src=" {{ asset('DashAsset/vendors4/morris.js/morris.min.js') }} "></script>
+    
+    <!-- EChartJS JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/echarts/dist/echarts-en.min.js') }} "></script>
+    
+    <!-- Sparkline JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/jquery.sparkline/dist/jquery.sparkline.min.js') }} "></script>
+
+
+    <!-- Owl JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/owl.carousel/dist/owl.carousel.min.js') }} "></script>
+    <script src=" {{ asset('DashAsset/dist/js/piecharts-data.js') }} "></script>
+{% endblock %}

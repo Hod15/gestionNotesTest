@@ -1,0 +1,191 @@
+{% extends 'siteBase.html.twig' %}
+
+{% block title %}Site Administration{% endblock %}
+
+{% block mainContent %}
+<div class="row">    							
+        <div class="col-sm-12">
+            <div class="hk-sec-wrapper">
+                <h2 class="hk-sec-title text-center">Data tables</h2>
+                <div class="row">
+                    <a href="{{ path('departement') }}" class="col-sm-3">
+                        <div class="card card-sm bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <div>
+                                        <span class="d-block font-15 font-weight-500">Departements</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block display-5 mb-5">{{nb_departement|length}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{{ path('promotion') }}" class="col-sm-3">
+                        <div class="card card-sm bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <div>
+                                        <span class="d-block font-15 font-weight-500">Promotions</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block display-5 mb-5">{{nb_promotion|length}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{{ path('module') }}" class="col-sm-3">
+                        <div class="card card-sm bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <div>
+                                        <span class="d-block font-15 font-weight-500">Modules</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block display-5 mb-5">{{nb_module|length}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{{ path('enseignement') }}" class="col-sm-3">
+                        <div class="card card-sm bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <div>
+                                        <span class="d-block font-15 font-weight-500">Enseignements</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block display-5 mb-5">{{nb_enseignement|length}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+            
+                    <a href="{{ path('uniteEnseignement') }}" class="col-sm-3">
+                        <div class="card card-sm bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <div>
+                                        <span class="d-block font-15 font-weight-500">Unite d'Enseignements</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block display-5 mb-5">{{nb_uniteEnseignement|length}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{{ path('enseignant') }}" class="col-sm-3">
+                        <div class="card card-sm bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <div>
+                                        <span class="d-block font-15 font-weight-500">Enseignants</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block display-5 mb-5">{{nb_enseignant|length}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{{ path('etudiant') }}" class="col-sm-3">
+                        <div class="card card-sm bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <div>
+                                        <span class="d-block font-15 font-weight-500">Etudiants</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block display-5 mb-5">{{nb_etudiant|length}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+            
+                    <a href="{{ path('regroupementModule') }}" class="col-sm-3">
+                        <div class="card card-sm bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <div>
+                                        <span class="d-block font-15 font-weight-500">Regoupement de Module</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="d-block display-5 mb-5">{{nb_regroupementModule|length}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div href="#" class="col-sm-12">
+            <section class="hk-sec-wrapper">
+                <h6 class="hk-sec-title h3 text-center">Rapport Modules/Enseignant</h6>
+                <div class="row">
+                    <a href="#" class="col-sm">
+                        <div id="e_chart_2" class="echart" style="height:294px;"></div>
+                    </a>
+                </div>
+
+            </section>
+        </div>
+</div>
+{% endblock %}
+
+{% block scriptToAdd %}
+        <!-- EChartJS JavaScript -->
+    <script src=" {{ asset('DashAsset/vendors4/echarts/dist/echarts-en.min.js') }} "></script>
+    <script>
+        if( $('#e_chart_2').length > 0 ){
+		var eChart_2 = echarts.init(document.getElementById('e_chart_2'));
+		
+		var option1 = {
+			tooltip: {
+				show: true,
+				backgroundColor: '#fff',
+				borderRadius:6,
+				padding:6,
+				axisPointer:{
+					lineStyle:{
+						width:0,
+					}
+				},
+				textStyle: {
+					color: '#324148',
+					fontFamily: '"Nunito", sans-serif',
+					fontSize: 12
+				}	
+			},
+			series: [
+				{
+					name:'',
+					type:'pie',
+					radius : '55%',
+					color: ['#ab26aa','#320777', '#bdbdbd'],
+					data:[
+						{value: {{nb_enseignant|length}} , name:'Enseignants'},
+                        {value: {{nb_uniteEnseignement|length}} , name:'Unite d\'Enseignement'},
+                        {value: {{nb_module|length}} , name:'Modules'},
+					],
+					label: {
+						normal: {
+							formatter: '{b}\n{d}%'
+						},
+				  
+					}
+				}
+			]
+		};
+		eChart_2.setOption(option1);
+		eChart_2.resize();
+	}
+    </script>
+{% endblock %}

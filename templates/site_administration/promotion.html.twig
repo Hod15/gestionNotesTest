@@ -1,0 +1,109 @@
+{% extends 'siteBase.html.twig' %}
+
+{% block title %}{{entity}} setting{% endblock %}
+
+{% block styleToAdd %}
+    <link href="{{ asset('DashAsset/vendors4/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('DashAsset/vendors4/datatables.net-responsive-dt/css/responsive.dataTables.min.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block mainContent %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="hk-sec-wrapper">
+            <h1 class="text-center h3 mb-4">Creation de {{ entity }}</h1>
+            {{ form_start(formProm)}}
+                <div class="row d-flex">
+                    <div class="col-xl-4 form-group">
+                        {{ form_widget(formProm.title, { attr: {'class' : "form-control filled-input input-block", 'placeholder' : "Entrer le nom de la Promotion"} } ) }}
+                    </div>
+
+                    <div class="col-xl-4 form-group">
+                        {{ form_widget(formProm.departement, { attr: {'class' : "filled-input custom-select" } } ) }}
+                    </div>
+
+                    <div class="col-xl-4 form-group">
+                        <input type="submit" class="btn btn-block btn-primary" value="Valider">
+                    </div>
+
+                    {% if form_errors(formProm.title) %}
+                        <div class="col-xl-12">
+                            <p class="text-danger">{{ form_errors(formProm.title) }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            {{ form_end(formProm)}} 
+            </div>
+        </div>
+
+    <div class="col-xl-12">
+        <section class="hk-sec-wrapper">
+            <div class="h4 hk-sec-title">{{ entity }}s</div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="table-wrap">
+                        <table id="datable_1" class="table table-hover w-100 display pb-30">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Titre</th>
+                                    <th>Departement</th>
+                                    <th>Date de creation</th>
+                                    <th>Date de modification</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% set id = 1 %}
+                                {% for promotion in promotions %}
+                                    <tr>
+                                        <td>{{ id }}</td>
+                                        <td>{{ promotion.title }}</td>
+                                        <td>{{ promotion.departement.title }}</td>
+                                        <td>{{ promotion.createdAt | date('d/m/Y H:i') }}</td>
+                                        <td>{{ promotion.modifiedAt | date('d/m/Y H:i')  }}</td>
+                                        <td class="d-flex justify-content-between"> 
+                                            <a href="{{ path('modif_promotion', {'id' : promotion.id}) }}" class="btn btn-icon btn-light btn-icon-style-1"><span class="btn-icon-wrap"><i class="fa fa-pencil"></i></span></a>
+                                            <a href="{{ path('delete_promotion', {'id' : promotion.id}) }}" class="btn btn-icon btn-light btn-icon-style-1"><span class="btn-icon-wrap"><i class="icon-trash"></i></span></a>
+                                        </td>
+                                    </tr>
+                                    {% set id = id + 1 %}
+                                {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>id</th>
+                                <th>Titre</th>
+                                <th>Departement</th>
+                                <th>Date de creation</th>
+                                <th>Date de modification</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </section>
+    </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scriptToAdd %}
+    <!-- Data Table JavaScript -->
+    <script src="{{ asset('DashAsset/vendors4/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons/js/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/jszip/dist/jszip.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/pdfmake/build/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/pdfmake/build/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/vendors4/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('DashAsset/dist/js/dataTables-data.js') }}"></script>
+{% endblock %}

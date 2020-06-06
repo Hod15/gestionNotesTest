@@ -1,0 +1,55 @@
+{% extends 'siteBase.html.twig' %}
+
+{% block title %}Creation {{entity}}{% endblock %}
+
+{% block mainContent %}
+    <div class="row">
+        <div class="offset-xl-2 col-xl-8">
+            <div class="hk-sec-wrapper">
+                <div class="form">
+                    {{ form_start(form) }}
+                    <h1 class="text-center mb-4">Information sur l'etudiant</h1>
+                        <div class="form-group">
+                            {{ form_widget(form.name, {attr: { 'placeholder' : "Entrer le nom de l'etudiant", 'class': "form-control filled-input input-block" } } ) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(form.lastName, {attr: { 'placeholder' : "Entrer le nom de l'etudiant", 'class': "form-control filled-input input-block" } } ) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ form_widget(form.email, {attr: { 'placeholder' : "Entrer le mail de l'etudiant", 'class': "form-control filled-input input-block" } } ) }}
+                                {% if form_errors(form.email) %}
+                                    <div class="mt-2 alert alert-danger">
+                                        {{ form_errors(form.email) }}
+                                    </div>
+                                {% endif %}
+                        </div>
+
+                        {{ form_start(radio) }}
+
+                        <div class="form-group">
+                            <div class="row">
+                                {% for rad in radio.promotion %}
+                                    <div class="col-xl-4">  
+                                        {{ form_row(rad) }} 
+                                    </div>
+                                {% endfor %}
+
+                                {% if form_errors(radio.promotion) %}
+                                    <div class="mt-2 alert alert-danger">
+                                        {{ form_errors(radio.promotion) }}
+                                    </div>
+                                {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Valider" class="btn btn-primary btn-block">
+                        </div>
+                        {{ form_end(radio) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
