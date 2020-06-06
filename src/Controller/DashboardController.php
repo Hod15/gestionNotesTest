@@ -21,22 +21,18 @@ class DashboardController extends AbstractController
      */
     public function index(UserInterface $user)
     {
-        if(in_array("ROLE_ETUDIANT", $user->getRoles()))
-        {
-            $etudiant = $this->getDoctrine()->getRepository(Etudiant::class)->findOneByUser($user);
-        
+        $hasAccessRoleEtudiant = $this->isGranted('ROLE_ETUDIANT');
+        $hasAccessRoleEnseignant = $this->isGranted('ROLE_ENSEIGNANT');
+        $hasAccessRoleAdmin = $this->isGranted('ROLE_ADMIN');
 
-            $uniteEnseignements = $this->getDoctrine()->getRepository(RegroupementModule::class)->findByPromotion($etudiant->getPromotion());
-
-            $etudiants = $this->getDoctrine()->getRepository(Promotion::class)->find($etudiant->getPromotion())->getEtudiants();
-
-            return $this->render('dashboard/index.html.twig', [
-                'data' => $uniteEnseignements,
-            ]);
+        // If ADMIN redirect to Site Administration
+        if ($hasAccessRoleAdmin){
+            return $this->redirectToRoute("site_administration");
         }
 
-        else if(in_array("ROLE_ENSEIGNANT", $user->getRoles()))
-        {
+        // But if Role Enseignant
+        elseif ($hasAccessRoleEnseignant){
+
             $enseignant = $this->getDoctrine()->getRepository(Enseignant::class)->findOneByUser($user);
 
             $modules = $enseignant->getModules();
@@ -46,7 +42,7 @@ class DashboardController extends AbstractController
             /*foreach($modules as $module)
             {
                 $controles = $this->getDoctrine()->getRepository(Controle::class)->findByModule($module);
-                
+
                 if($controles)
                 {
                     $etudiants = $controles[0]->getEtudiants();
@@ -85,10 +81,19 @@ class DashboardController extends AbstractController
                 'data' => "",
             ]);
         }
+        // If user is ETUDIANT
+        elseif ($hasAccessRoleEtudiant){
 
-        return $this->render('dashboard/index.html.twig', [
-            'data' => "",
-        ]);
+            $etudiant = $this->getDoctrine()->getRepository(Etudiant::class)->findOneByUser($user);
+
+            $uniteEnseignements = $this->getDoctrine()->getRepository(RegroupementModule::class)->findByPromotion($etudiant->getPromotion());
+
+            $etudiants = $this->getDoctrine()->getRepository(Promotion::class)->find($etudiant->getPromotion())->getEtudiants();
+
+            return $this->render('dashboard/index.html.twig', [
+                'data' => $uniteEnseignements,
+            ]);
+        }
     }
     
     /**
