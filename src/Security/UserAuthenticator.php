@@ -72,9 +72,6 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
-        if(!$user->getEnable())
-            $this->checkEnable();
-
         $user->setLastLogin(new \DateTime);
         $this->entityManager->persist($user);
         $this->entityManager->flush();
@@ -82,10 +79,6 @@ class UserAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         return $user;
     }
 
-    public function checkEnable()
-    {
-        return new RedirectResponse($this->urlGenerator->generate('app_login'));
-    }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
